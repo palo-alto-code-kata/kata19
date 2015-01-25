@@ -14,6 +14,7 @@ public class Main {
 
     private static boolean wordChain(String startWord, String targetWord) {
 
+        
         Graph g = generateGraph(startWord, targetWord);
 
 
