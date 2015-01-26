@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.LinkedList;
+import java.util.HashMap;
 
 /**
  * Created by daljeetv on 1/25/15.
@@ -8,6 +9,7 @@ import java.util.LinkedList;
 public class Graph {
 
     LinkedList<Node> words;
+    HashMap<Node, Boolean> wordsAlreadyInGraph;
 
     public class Node{
         String string;
@@ -20,11 +22,25 @@ public class Graph {
     }
 
 
-    public Graph(){
+
+    public Graph()
+    {
         words = new LinkedList<Node>();
+        wordsAlreadyInGraph = new HashMap<Node, Boolean>();
     }
 
-    public void addVertex(String word1, String word2){
+    public boolean containsWord(String word){
+        return wordsAlreadyInGraph.containsKey(word);
+    }
+
+    public void addVertex(String word){
+        if(!containsWord(word)){
+            words.add(new Node(word));
+            wordsAlreadyInGraph.put(new Node(word), true);
+        }
+    }
+
+    public void addEdges(String word1, String word2){
         boolean isWord1InGraph = false;
         boolean isWord2InGraph = false;
         for(Node w: words){
